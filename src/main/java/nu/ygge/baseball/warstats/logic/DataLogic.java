@@ -26,13 +26,10 @@ public final class DataLogic {
             playerNamesById.put(playerYearData.id, playerYearData.name);
         }
         String nameToSearch = name.toLowerCase();
-        List<Player> players = new ArrayList<>();
-        for (Map.Entry<PlayerId, String> playerEntry : playerNamesById.entrySet()) {
-            if (playerEntry.getValue().toLowerCase().contains(nameToSearch)) {
-                players.add(new Player(playerEntry.getKey(), playerEntry.getValue()));
-            }
-        }
-        return players;
+        return playerNamesById.entrySet().stream()
+                .filter(playerEntry -> playerEntry.getValue().toLowerCase().contains(nameToSearch))
+                .map(playerEntry -> new Player(playerEntry.getKey(), playerEntry.getValue()))
+                .collect(Collectors.toList());
     }
 
     public Collection<PlayerYearData> getYearDataForPlayer(PlayerId playerId) {
