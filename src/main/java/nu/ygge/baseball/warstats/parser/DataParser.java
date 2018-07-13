@@ -54,7 +54,10 @@ public final class DataParser {
         Optional<PlayerId> playerId = PlayerId.create(columns[headers.get("mlb_ID")]);
         Integer year = Util.parseIntegerSafe(columns[headers.get("year_ID")]);
         Integer age = Util.parseIntegerSafe(columns[headers.get("age")]);
-        if (year == null || age == null) {
+        Integer games = Util.parseIntegerSafe(columns[headers.get("G")]);
+        Integer plateAppearances = Util.parseIntegerSafe(getSafe(columns, headers.get("BA")));
+        Integer inningsPitched = Util.parseIntegerSafe(getSafe(columns, headers.get("G")));
+        if (year == null || age == null || games == null) {
             return Optional.empty();
         }
         return playerId.map(id -> new PlayerYearData(
@@ -63,8 +66,15 @@ public final class DataParser {
                 columns[headers.get("team_ID")],
                 year,
                 age,
+                games,
+                plateAppearances,
+                inningsPitched,
                 columns[headers.get("WAR")]
         ));
+    }
+
+    private static String getSafe(String[] columns, Integer index) {
+        return index == null ? null : columns[index];
     }
 
     private static String[] splitRow(String row) {

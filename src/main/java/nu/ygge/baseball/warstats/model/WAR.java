@@ -17,13 +17,7 @@ public final class WAR {
     }
 
     public WAR add(WAR war) {
-        if (war100 == null) {
-            return war;
-        }
-        if (war.war100 == null) {
-            return this;
-        }
-        return new WAR(war100 + war.war100);
+        return new WAR(Util.add(war100, war.war100));
     }
 
     private static Integer parseWAR(String warString) {

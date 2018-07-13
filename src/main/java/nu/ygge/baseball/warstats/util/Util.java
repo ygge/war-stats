@@ -20,4 +20,14 @@ public final class Util {
             return null;
         }
     }
+
+    public static Integer add(Integer numA, Integer numB) {
+        if (numA == null) {
+            return numB;
+        }
+        if (numB == null) {
+            return numA;
+        }
+        return numA + numB;
+    }
 }
