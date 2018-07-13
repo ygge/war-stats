@@ -1,6 +1,7 @@
 package nu.ygge.baseball.warstats.logic;
 
 import nu.ygge.baseball.warstats.model.Player;
+import nu.ygge.baseball.warstats.model.PlayerId;
 import nu.ygge.baseball.warstats.model.PlayerYear;
 
 import java.util.ArrayList;
@@ -18,13 +19,13 @@ public final class DataLogic {
     }
 
     public Collection<Player> searchPlayerByName(String name) {
-        Map<Integer, String> playerNamesById = new HashMap<>();
+        Map<PlayerId, String> playerNamesById = new HashMap<>();
         for (PlayerYear playerYear : playerYears) {
             playerNamesById.put(playerYear.id, playerYear.name);
         }
         String nameToSearch = name.toLowerCase();
         List<Player> players = new ArrayList<>();
-        for (Map.Entry<Integer, String> playerEntry : playerNamesById.entrySet()) {
+        for (Map.Entry<PlayerId, String> playerEntry : playerNamesById.entrySet()) {
             if (playerEntry.getValue().toLowerCase().contains(nameToSearch)) {
                 players.add(new Player(playerEntry.getKey(), playerEntry.getValue()));
             }

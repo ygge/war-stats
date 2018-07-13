@@ -2,6 +2,7 @@ package nu.ygge.baseball.warstats.logic;
 
 import nu.ygge.baseball.warstats.model.Player;
 import nu.ygge.baseball.warstats.testhelp.DataParserTestHelp;
+import nu.ygge.baseball.warstats.testhelp.PlayerIdTestHelp;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -20,12 +21,12 @@ public class DataLogicTest {
 
     @Test
     public void givenStandardTestDataWhenSearchingForMikeTroutThenReturnCorrectData() {
-        verifySingleSearchName("Mike Trout", new Player(545361, "Mike Trout"));
+        verifySingleSearchName("Mike Trout", new Player(PlayerIdTestHelp.createPlayerId(545361), "Mike Trout"));
     }
 
     @Test
     public void givenStandardTestDataWhenSearchingForMannyMachadoThenReturnCorrectData() {
-        verifySingleSearchName("nny mach", new Player(592518, "Manny Machado"));
+        verifySingleSearchName("nny mach", new Player(PlayerIdTestHelp.createPlayerId(592518), "Manny Machado"));
     }
 
     @Test

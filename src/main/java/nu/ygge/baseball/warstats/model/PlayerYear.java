@@ -2,11 +2,12 @@ package nu.ygge.baseball.warstats.model;
 
 public final class PlayerYear {
 
-    public final int id, year, age;
+    public final PlayerId id;
+    public final int year, age;
     public final String name, team;
     public final WAR war;
 
-    public PlayerYear(int id, String name, String team, int year, int age, String warString) {
+    public PlayerYear(PlayerId id, String name, String team, int year, int age, String warString) {
         this.id = id;
         this.year = year;
         this.age = age;

@@ -1,5 +1,6 @@
 package nu.ygge.baseball.warstats.parser;
 
+import nu.ygge.baseball.warstats.model.PlayerId;
 import nu.ygge.baseball.warstats.model.PlayerYear;
 import nu.ygge.baseball.warstats.util.Util;
 
@@ -52,13 +53,13 @@ public final class DataParser {
 
     private static Optional<PlayerYear> parseRow(Map<String, Integer> headers, String row) {
         String[] columns = splitRow(row);
-        Integer id = Util.parseIntegerSafe(columns[headers.get("mlb_ID")]);
+        Optional<PlayerId> playerId = PlayerId.create(columns[headers.get("mlb_ID")]);
         Integer year = Util.parseIntegerSafe(columns[headers.get("year_ID")]);
         Integer age = Util.parseIntegerSafe(columns[headers.get("age")]);
-        if (id == null || year == null || age == null) {
+        if (year == null || age == null) {
             return Optional.empty();
         }
-        return Optional.of(new PlayerYear(
+        return playerId.map(id -> new PlayerYear(
                 id,
                 columns[headers.get("name_common")],
                 columns[headers.get("team_ID")],
