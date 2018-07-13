@@ -2,7 +2,7 @@ package nu.ygge.baseball.warstats.model;
 
 import nu.ygge.baseball.warstats.util.Util;
 
-public class WAR {
+public final class WAR {
 
     private static final String NULL = "NULL";
 

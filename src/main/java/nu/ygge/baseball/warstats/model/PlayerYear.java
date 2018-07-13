@@ -1,6 +1,6 @@
 package nu.ygge.baseball.warstats.model;
 
-public class PlayerYear {
+public final class PlayerYear {
 
     public final int id, year, age;
     public final String name, team;
