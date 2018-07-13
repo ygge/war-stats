@@ -1,4 +1,4 @@
-package nu.ygge.baseball.warstats;
+package nu.ygge.baseball.warstats.parser;
 
 import nu.ygge.baseball.warstats.model.PlayerYear;
 import org.junit.Test;
