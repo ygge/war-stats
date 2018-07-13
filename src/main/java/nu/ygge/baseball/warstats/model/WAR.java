@@ -8,8 +8,22 @@ public final class WAR {
 
     private final Integer war100;
 
-    public WAR(String warString) {
-        war100 = parseWAR(warString);
+    private WAR(Integer war) {
+        this.war100 = war;
+    }
+
+    public static WAR create(String warString) {
+        return new WAR(parseWAR(warString));
+    }
+
+    public WAR add(WAR war) {
+        if (war100 == null) {
+            return war;
+        }
+        if (war.war100 == null) {
+            return this;
+        }
+        return new WAR(war100 + war.war100);
     }
 
     private static Integer parseWAR(String warString) {

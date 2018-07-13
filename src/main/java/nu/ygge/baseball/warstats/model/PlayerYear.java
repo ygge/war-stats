@@ -1,18 +1,32 @@
 package nu.ygge.baseball.warstats.model;
 
+import java.util.Objects;
+
 public final class PlayerYear {
 
     public final PlayerId id;
-    public final int year, age;
-    public final String name, team;
-    public final WAR war;
+    public final int year;
 
-    public PlayerYear(PlayerId id, String name, String team, int year, int age, String warString) {
+    public PlayerYear(PlayerId id, int year) {
         this.id = id;
         this.year = year;
-        this.age = age;
-        this.name = name;
-        this.team = team;
-        this.war = new WAR(warString);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PlayerYear that = (PlayerYear) o;
+        return year == that.year
+                && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, year);
     }
 }

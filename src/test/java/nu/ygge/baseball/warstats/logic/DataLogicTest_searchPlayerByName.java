@@ -10,7 +10,7 @@ import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
 
-public class DataLogicTest {
+public class DataLogicTest_searchPlayerByName {
 
     private static DataLogic logic;
 
@@ -32,6 +32,11 @@ public class DataLogicTest {
     @Test
     public void givenStandardTestDataWhenSearchingForStringThatOccursInSeveralPlayersNamesThenFetchAllPlayersMatching() {
         verifyMultipleSearchName("trout", 3);
+    }
+
+    @Test
+    public void givenStandardTestDataWhenSearchingForStringNotMatchingAnyThenReturnNoPlayers() {
+        verifyMultipleSearchName("no one is named this", 0);
     }
 
     private Collection<Player> verifyMultipleSearchName(String searchName, int expectedPlayers) {

@@ -1,17 +1,15 @@
 package nu.ygge.baseball.warstats.parser;
 
 import nu.ygge.baseball.warstats.model.PlayerId;
-import nu.ygge.baseball.warstats.model.PlayerYear;
+import nu.ygge.baseball.warstats.model.PlayerYearData;
+import nu.ygge.baseball.warstats.model.PlayerYearDataCollection;
 import nu.ygge.baseball.warstats.util.Util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -19,16 +17,16 @@ public final class DataParser {
     
     private DataParser() {}
 
-    public static List<PlayerYear> parse(InputStream... streams) {
-        List<PlayerYear> data = new ArrayList<>();
+    public static PlayerYearDataCollection parse(InputStream... streams) {
+        PlayerYearDataCollection data = new PlayerYearDataCollection();
         for (InputStream stream : streams) {
-            data.addAll(parseStream(stream));
+            data.add(parseStream(stream));
         }
         return data;
     }
 
-    private static Collection<PlayerYear> parseStream(InputStream stream) {
-        List<PlayerYear> data = new ArrayList<>();
+    private static PlayerYearDataCollection parseStream(InputStream stream) {
+        PlayerYearDataCollection data = new PlayerYearDataCollection();
         BufferedReader in = new BufferedReader(new InputStreamReader(stream));
         String row;
         try {
@@ -51,7 +49,7 @@ public final class DataParser {
         return headers;
     }
 
-    private static Optional<PlayerYear> parseRow(Map<String, Integer> headers, String row) {
+    private static Optional<PlayerYearData> parseRow(Map<String, Integer> headers, String row) {
         String[] columns = splitRow(row);
         Optional<PlayerId> playerId = PlayerId.create(columns[headers.get("mlb_ID")]);
         Integer year = Util.parseIntegerSafe(columns[headers.get("year_ID")]);
@@ -59,7 +57,7 @@ public final class DataParser {
         if (year == null || age == null) {
             return Optional.empty();
         }
-        return playerId.map(id -> new PlayerYear(
+        return playerId.map(id -> new PlayerYearData(
                 id,
                 columns[headers.get("name_common")],
                 columns[headers.get("team_ID")],
