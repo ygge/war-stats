@@ -27,6 +27,17 @@ public final class WAR {
         return String.format("%.2f", war100/100.0);
     }
 
+    public boolean hasValue() {
+        return war100 != null;
+    }
+
+    /**
+     * Not to be used for display, only meant to be able to compare different values
+     */
+    public int intValue() {
+        return war100;
+    }
+
     private static Integer parseWAR(String warString) {
         if (NULL.equalsIgnoreCase(warString)) {
             return null;

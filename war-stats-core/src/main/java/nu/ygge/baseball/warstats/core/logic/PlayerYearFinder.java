@@ -17,7 +17,7 @@ public final class PlayerYearFinder {
 
     private final List<PlayerYearData> playerYearsData;
 
-    public PlayerYearFinder(PlayerYearDataCollection playerYearData) {
+    PlayerYearFinder(PlayerYearDataCollection playerYearData) {
         this.playerYearsData = new ArrayList<>(playerYearData.toCollection());
     }
 

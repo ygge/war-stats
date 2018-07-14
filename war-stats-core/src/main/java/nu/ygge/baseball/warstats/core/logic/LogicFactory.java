@@ -1,6 +1,5 @@
-package nu.ygge.baseball.warstats.core.util;
+package nu.ygge.baseball.warstats.core.logic;
 
-import nu.ygge.baseball.warstats.core.logic.CalculatorSettings;
 import nu.ygge.baseball.warstats.core.logic.PlayerYearFinder;
 import nu.ygge.baseball.warstats.core.logic.WARYearCalculator;
 import nu.ygge.baseball.warstats.core.model.PlayerYearDataCollection;

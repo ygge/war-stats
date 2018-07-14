@@ -14,7 +14,7 @@ import java.util.Set;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class PlayerYearFinder_getYearDataForPlayer {
+public class PlayerYearFinderTest_getYearDataForPlayer {
 
     private static PlayerYearFinder logic;
 

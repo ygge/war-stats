@@ -3,6 +3,7 @@ package nu.ygge.baseball.warstats.core.logic;
 import nu.ygge.baseball.warstats.core.model.PlayerYearData;
 import nu.ygge.baseball.warstats.core.model.PlayerYearDataCollection;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,12 +11,13 @@ public final class WARYearCalculator {
 
     private final PlayerYearDataCollection playerYearDataCollection;
 
-    public WARYearCalculator(PlayerYearDataCollection playerYearDataCollection) {
+    WARYearCalculator(PlayerYearDataCollection playerYearDataCollection) {
         this.playerYearDataCollection = playerYearDataCollection;
     }
 
-    public void calculate(CalculatorSettings settings) {
+    public Collection<PlayerWARData> calculate(CalculatorSettings settings) {
         List<PlayerYearData> matchingYearDatas = filterMatchingYearDatas(settings);
+        return PlayerWARHelper.toPlayerWARData(matchingYearDatas);
     }
 
     private List<PlayerYearData> filterMatchingYearDatas(CalculatorSettings settings) {
@@ -24,7 +26,12 @@ public final class WARYearCalculator {
                 .collect(Collectors.toList());
     }
 
-    private boolean matchesFilter(PlayerYearData settings, CalculatorSettings yearData) {
-        return false;
+    private boolean matchesFilter(PlayerYearData yearData, CalculatorSettings settings) {
+        //noinspection SimplifiableIfStatement
+        if (!settings.getYear().matches(yearData.year)) {
+            return false;
+        }
+        return settings.getPlateAppearances().matches(yearData.plateAppearances)
+                || settings.getInningsPitched().matches(yearData.inningsPitched);
     }
 }
