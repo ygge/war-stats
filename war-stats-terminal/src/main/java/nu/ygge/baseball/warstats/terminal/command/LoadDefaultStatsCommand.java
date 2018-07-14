@@ -1,7 +1,7 @@
 package nu.ygge.baseball.warstats.terminal.command;
 
 import nu.ygge.baseball.warstats.core.logic.PlayerYearFinder;
-import nu.ygge.baseball.warstats.core.util.PlayerYearFinderFactory;
+import nu.ygge.baseball.warstats.core.util.LogicFactory;
 import nu.ygge.baseball.warstats.terminal.Environment;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public class LoadDefaultStatsCommand extends Command {
 
     @Override
     public void perform(Environment environment, List<String> parameters) {
-        PlayerYearFinder finder = PlayerYearFinderFactory.createWithStats(
+        PlayerYearFinder finder = LogicFactory.createFinderWithStats(
                 getClass().getResourceAsStream("/war-daily-bat.txt"),
                 getClass().getResourceAsStream("/war-daily-pitching.txt")
         );
