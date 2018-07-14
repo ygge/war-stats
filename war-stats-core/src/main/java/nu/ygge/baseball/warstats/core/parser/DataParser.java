@@ -56,7 +56,7 @@ public final class DataParser {
         Integer age = Util.parseIntegerSafe(columns[headers.get("age")]);
         Integer games = Util.parseIntegerSafe(columns[headers.get("G")]);
         Integer plateAppearances = Util.parseIntegerSafe(getSafe(columns, headers.get("PA")));
-        Integer inningsPitched = Util.parseIntegerSafe(getSafe(columns, headers.get("IP")));
+        Integer inningsPitched = Util.parseIntegerSafe(getSafe(columns, headers.get("IPouts")));
         if (year == null || age == null || games == null) {
             return Optional.empty();
         }
