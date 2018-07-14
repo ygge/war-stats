@@ -1,0 +1,1 @@
+../../../../war-stats-core/src/test/resources/war_daily_pitch.txt

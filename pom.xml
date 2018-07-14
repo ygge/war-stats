@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>war-stats-core</module>
+        <module>war-stats-terminal</module>
     </modules>
 
     <packaging>pom</packaging>
