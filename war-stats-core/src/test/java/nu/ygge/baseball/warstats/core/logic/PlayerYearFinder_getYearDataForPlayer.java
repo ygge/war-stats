@@ -14,13 +14,13 @@ import java.util.Set;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class DataLogicTest_getYearDataForPlayer {
+public class PlayerYearFinder_getYearDataForPlayer {
 
-    private static DataLogic logic;
+    private static PlayerYearFinder logic;
 
     @BeforeClass
     public static void setupClass() {
-        logic = new DataLogic(DataParserTestHelp.loadTestData());
+        logic = new PlayerYearFinder(DataParserTestHelp.loadTestData());
     }
 
     @Test

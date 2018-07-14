@@ -10,13 +10,13 @@ import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
 
-public class DataLogicTest_searchPlayerByName {
+public class PlayerYearFinderTest_searchPlayerByName {
 
-    private static DataLogic logic;
+    private static PlayerYearFinder logic;
 
     @BeforeClass
     public static void setupClass() {
-        logic = new DataLogic(DataParserTestHelp.loadTestData());
+        logic = new PlayerYearFinder(DataParserTestHelp.loadTestData());
     }
 
     @Test

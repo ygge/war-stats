@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public final class DataLogic {
+public final class PlayerYearFinder {
 
     private final List<PlayerYearData> playerYearsData;
 
-    public DataLogic(PlayerYearDataCollection playerYearData) {
+    public PlayerYearFinder(PlayerYearDataCollection playerYearData) {
         this.playerYearsData = new ArrayList<>(playerYearData.toCollection());
     }
 
