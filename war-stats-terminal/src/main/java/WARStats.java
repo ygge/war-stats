@@ -14,14 +14,16 @@ public class WARStats {
 
     public static final String COMMAND_QUIT = "quit";
     public static final String COMMAND_HELP = "help";
+    public static final String COMMAND_VERBOSE = "verbose";
     public static final String COMMAND_LOAD_DEFAULT_STATS = "load-default-stats";
     public static final String COMMAND_FIND_PLAYER = "find-player";
-    public static final String COMMAND_SHOW_PLAYER_DATA = "show-player-data";
+    public static final String COMMAND_SHOW_PLAYER_STATS = "show-player-stats";
 
     public static final String NEW_LINE = System.lineSeparator();
     public static final String SPACES = "                                                         ";
 
     private PlayerYearFinder finder;
+    private boolean printErrors = false;
 
     public static void main(String[] args) {
         new WARStats().run();
@@ -47,8 +49,10 @@ public class WARStats {
                     loadDefaultStats();
                 } else if (command.startsWith(COMMAND_FIND_PLAYER)) {
                     findPlayer(command.substring(COMMAND_FIND_PLAYER.length()+1));
-                } else if (command.startsWith(COMMAND_SHOW_PLAYER_DATA)) {
-                    showPlayerData(command.substring(COMMAND_SHOW_PLAYER_DATA.length()+1));
+                } else if (command.startsWith(COMMAND_SHOW_PLAYER_STATS)) {
+                    showPlayerData(command.substring(COMMAND_SHOW_PLAYER_STATS.length()+1));
+                } else if (command.equalsIgnoreCase(COMMAND_VERBOSE)) {
+                    updateVerbose();
                 } else if (command.equalsIgnoreCase(COMMAND_HELP)) {
                     printHelp();
                 } else {
@@ -56,11 +60,27 @@ public class WARStats {
                 }
             } catch (IOException e) {
                 println("Something went wrong reading from/writing to disk, please retry last command");
+                if (printErrors) {
+                    e.printStackTrace();
+                }
             } catch (RuntimeException e) {
                 println("Something went wrong, please retry last command");
+                if (printErrors) {
+                    e.printStackTrace();
+                }
             }
         }
         println("Goodbye, and thank you for using WAR-stats");
+    }
+
+    private void updateVerbose() {
+        if (printErrors) {
+            printErrors = false;
+            System.out.println("Errors details will NOT be printed");
+        } else {
+            printErrors = true;
+            System.out.println("Errors details will be printed");
+        }
     }
 
     private void showPlayerData(String playerIdString) {
@@ -81,10 +101,16 @@ public class WARStats {
             message.append(String.format("Year data for '%s'", playerYears.iterator().next().name)).append(NEW_LINE);
             appendLeftAlignedStringWithLength(message, "Year", 5);
             appendRightAlignedStringWithLength(message, "WAR", 6);
+            appendRightAlignedStringWithLength(message, "G", 6);
+            appendRightAlignedStringWithLength(message, "PA", 6);
+            appendRightAlignedStringWithLength(message, "IP", 6);
             message.append(NEW_LINE);
             for (PlayerYearData playerYear : playerYears) {
                 appendLeftAlignedStringWithLength(message, Integer.toString(playerYear.year), 5);
                 appendRightAlignedStringWithLength(message, playerYear.war.toSimpleString(), 6);
+                appendRightAlignedIntegerWithLength(message, playerYear.games, 6);
+                appendRightAlignedIntegerWithLength(message, playerYear.plateAppearances, 6);
+                appendRightAlignedIntegerWithLength(message, playerYear.inningsPitched, 6);
                 message.append(NEW_LINE);
             }
             println(message.toString());
@@ -100,6 +126,11 @@ public class WARStats {
         appendAlignedStringWithLength(sb, str, length, Alignment.RIGHT);
     }
 
+    private void appendRightAlignedIntegerWithLength(StringBuilder sb, Integer value, int length) {
+        String str = Integer.toString(value == null ? 0 : value);
+        appendAlignedStringWithLength(sb, str, length, Alignment.RIGHT);
+    }
+
     private void appendAlignedStringWithLength(StringBuilder sb, String str, int length, Alignment alignment) {
         String formatted = str;
         if (str.length() > length) {
@@ -111,7 +142,6 @@ public class WARStats {
     }
 
     private void findPlayer(String playerName) {
-        String separator = ": ";
         Collection<Player> players = finder.searchPlayerByName(playerName);
         if (players.isEmpty()) {
             println("No players found");
