@@ -1,4 +1,4 @@
-package nu.ygge.baseball.warstats.util;
+package nu.ygge.baseball.warstats.core.util;
 
 public final class Util {
 

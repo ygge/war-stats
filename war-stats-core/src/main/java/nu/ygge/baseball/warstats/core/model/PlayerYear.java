@@ -1,4 +1,4 @@
-package nu.ygge.baseball.warstats.model;
+package nu.ygge.baseball.warstats.core.model;
 
 import java.util.Objects;
 

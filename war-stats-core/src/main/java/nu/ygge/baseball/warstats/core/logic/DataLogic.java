@@ -1,9 +1,9 @@
-package nu.ygge.baseball.warstats.logic;
+package nu.ygge.baseball.warstats.core.logic;
 
-import nu.ygge.baseball.warstats.model.Player;
-import nu.ygge.baseball.warstats.model.PlayerId;
-import nu.ygge.baseball.warstats.model.PlayerYearData;
-import nu.ygge.baseball.warstats.model.PlayerYearDataCollection;
+import nu.ygge.baseball.warstats.core.model.PlayerYearDataCollection;
+import nu.ygge.baseball.warstats.core.model.Player;
+import nu.ygge.baseball.warstats.core.model.PlayerId;
+import nu.ygge.baseball.warstats.core.model.PlayerYearData;
 
 import java.util.ArrayList;
 import java.util.Collection;

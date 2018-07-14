@@ -1,6 +1,6 @@
-package nu.ygge.baseball.warstats.model;
+package nu.ygge.baseball.warstats.core.model;
 
-import nu.ygge.baseball.warstats.util.Util;
+import nu.ygge.baseball.warstats.core.util.Util;
 
 public final class PlayerYearData {
 
