@@ -1,11 +1,14 @@
 import nu.ygge.baseball.warstats.core.logic.PlayerYearFinder;
 import nu.ygge.baseball.warstats.core.model.Player;
+import nu.ygge.baseball.warstats.core.model.PlayerId;
+import nu.ygge.baseball.warstats.core.model.PlayerYearData;
 import nu.ygge.baseball.warstats.core.util.PlayerYearFinderFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collection;
+import java.util.function.BiFunction;
 
 public class WARStats {
 
@@ -13,8 +16,10 @@ public class WARStats {
     public static final String COMMAND_HELP = "help";
     public static final String COMMAND_LOAD_DEFAULT_STATS = "load-default-stats";
     public static final String COMMAND_FIND_PLAYER = "find-player";
+    public static final String COMMAND_SHOW_PLAYER_DATA = "show-player-data";
 
     public static final String NEW_LINE = System.lineSeparator();
+    public static final String SPACES = "                                                         ";
 
     private PlayerYearFinder finder;
 
@@ -27,33 +32,82 @@ public class WARStats {
         println("Welcome to WAR-stats, a terminal program for Major League Baseball (MLB) Wins Above Replacement (WAR) statistics");
         while (true) {
             print("> ");
-            String command;
             try {
-                command = in.readLine();
+                String command = in.readLine();
+                if (command == null) {
+                    continue;
+                }
+                String trimmedCommand = command.trim();
+                if (trimmedCommand.isEmpty()) {
+                    continue;
+                }
+                if (command.equalsIgnoreCase(COMMAND_QUIT)) {
+                    break;
+                } else if (command.equalsIgnoreCase(COMMAND_LOAD_DEFAULT_STATS)) {
+                    loadDefaultStats();
+                } else if (command.startsWith(COMMAND_FIND_PLAYER)) {
+                    findPlayer(command.substring(COMMAND_FIND_PLAYER.length()+1));
+                } else if (command.startsWith(COMMAND_SHOW_PLAYER_DATA)) {
+                    showPlayerData(command.substring(COMMAND_SHOW_PLAYER_DATA.length()+1));
+                } else if (command.equalsIgnoreCase(COMMAND_HELP)) {
+                    printHelp();
+                } else {
+                    println("Command not understood, please use the command 'help' to get info about available commands");
+                }
             } catch (IOException e) {
-                println("Could not read response, please try again");
-                continue;
-            }
-            if (command == null) {
-                continue;
-            }
-            String trimmedCommand = command.trim();
-            if (trimmedCommand.isEmpty()) {
-                continue;
-            }
-            if (command.equalsIgnoreCase(COMMAND_QUIT)) {
-                break;
-            } else if (command.equalsIgnoreCase(COMMAND_LOAD_DEFAULT_STATS)) {
-                loadDefaultStats();
-            } else if (command.startsWith(COMMAND_FIND_PLAYER)) {
-                findPlayer(command.substring(COMMAND_FIND_PLAYER.length()+1));
-            } else if (command.equalsIgnoreCase(COMMAND_HELP)) {
-                printHelp();
-            } else {
-                println("Command not understood, please use the command 'help' to get info about available commands");
+                println("Something went wrong reading from/writing to disk, please retry last command");
+            } catch (RuntimeException e) {
+                println("Something went wrong, please retry last command");
             }
         }
         println("Goodbye, and thank you for using WAR-stats");
+    }
+
+    private void showPlayerData(String playerIdString) {
+        PlayerId.create(playerIdString)
+                .map(this::showPlayerData)
+                .orElseGet(() -> {
+                    println(String.format("Id '%s' not supported", playerIdString));
+                    return false;
+                });
+    }
+
+    private boolean showPlayerData(PlayerId playerId) {
+        Collection<PlayerYearData> playerYears = finder.getYearDataForPlayer(playerId);
+        if (playerYears.isEmpty()) {
+            println(String.format("Player with id '%s' not found", playerId.toSimpleString()));
+        } else {
+            StringBuilder message = new StringBuilder();
+            message.append(String.format("Year data for '%s'", playerYears.iterator().next().name)).append(NEW_LINE);
+            appendLeftAlignedStringWithLength(message, "Year", 5);
+            appendRightAlignedStringWithLength(message, "WAR", 6);
+            message.append(NEW_LINE);
+            for (PlayerYearData playerYear : playerYears) {
+                appendLeftAlignedStringWithLength(message, Integer.toString(playerYear.year), 5);
+                appendRightAlignedStringWithLength(message, playerYear.war.toSimpleString(), 6);
+                message.append(NEW_LINE);
+            }
+            println(message.toString());
+        }
+        return true;
+    }
+
+    private void appendLeftAlignedStringWithLength(StringBuilder sb, String str, int length) {
+        appendAlignedStringWithLength(sb, str, length, Alignment.LEFT);
+    }
+
+    private void appendRightAlignedStringWithLength(StringBuilder sb, String str, int length) {
+        appendAlignedStringWithLength(sb, str, length, Alignment.RIGHT);
+    }
+
+    private void appendAlignedStringWithLength(StringBuilder sb, String str, int length, Alignment alignment) {
+        String formatted = str;
+        if (str.length() > length) {
+            formatted = str.substring(0, length);
+        } else if (str.length() < length) {
+            formatted = alignment.perform.apply(str, SPACES.substring(0, length-str.length()));
+        }
+        sb.append(formatted);
     }
 
     private void findPlayer(String playerName) {
@@ -64,8 +118,13 @@ public class WARStats {
         } else {
             StringBuilder message = new StringBuilder();
             message.append("Found players:").append(NEW_LINE);
+            appendLeftAlignedStringWithLength(message, "Name", 20);
+            appendRightAlignedStringWithLength(message, "ID", 7);
+            message.append(NEW_LINE);
             for (Player player : players) {
-                message.append(player.name).append(separator).append(player.id.toSimpleString()).append(NEW_LINE);
+                appendLeftAlignedStringWithLength(message, player.name, 20);
+                appendRightAlignedStringWithLength(message, player.id.toSimpleString(), 7);
+                message.append(NEW_LINE);
             }
             println(message.toString());
         }
@@ -93,6 +152,21 @@ public class WARStats {
     }
 
     private void println(String message) {
-        System.out.println(message);
+        if (message.endsWith(NEW_LINE)) {
+            print(message);
+        } else {
+            System.out.println(message);
+        }
+    }
+
+    private enum Alignment {
+        LEFT((text, spaces) -> text+spaces),
+        RIGHT((text, spaces) -> spaces+text);
+
+        private final BiFunction<String, String, String> perform;
+
+        Alignment(BiFunction<String, String, String> perform) {
+            this.perform = perform;;
+        }
     }
 }

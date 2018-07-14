@@ -1,12 +1,13 @@
 package nu.ygge.baseball.warstats.core.logic;
 
-import nu.ygge.baseball.warstats.core.model.PlayerYearDataCollection;
 import nu.ygge.baseball.warstats.core.model.Player;
 import nu.ygge.baseball.warstats.core.model.PlayerId;
 import nu.ygge.baseball.warstats.core.model.PlayerYearData;
+import nu.ygge.baseball.warstats.core.model.PlayerYearDataCollection;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,7 @@ public final class PlayerYearFinder {
     public Collection<PlayerYearData> getYearDataForPlayer(PlayerId playerId) {
         return playerYearsData.stream()
                 .filter(playerYear -> playerId.equals(playerYear.id))
+                .sorted(Comparator.comparingInt(o -> o.year))
                 .collect(Collectors.toList());
     }
 }

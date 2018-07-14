@@ -20,6 +20,13 @@ public final class WAR {
         return new WAR(Util.add(war100, war.war100));
     }
 
+    public String toSimpleString() {
+        if (war100 == null) {
+            return null;
+        }
+        return String.format("%.2f", war100/100.0);
+    }
+
     private static Integer parseWAR(String warString) {
         if (NULL.equalsIgnoreCase(warString)) {
             return null;
@@ -41,13 +48,6 @@ public final class WAR {
 
     @Override
     public String toString() {
-        return String.format("WAR(%s)", toInternalString());
-    }
-
-    private String toInternalString() {
-        if (war100 == null) {
-            return null;
-        }
-        return String.format("%.2f", war100/100.0);
+        return String.format("WAR(%s)", toSimpleString());
     }
 }
