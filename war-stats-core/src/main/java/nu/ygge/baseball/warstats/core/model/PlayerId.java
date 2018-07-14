@@ -18,6 +18,10 @@ public final class PlayerId {
         return intId == null ? Optional.empty() : Optional.of(new PlayerId(intId));
     }
 
+    public String toSimpleString() {
+        return Integer.toString(id);
+    }
+
     @Override
     public String toString() {
         return String.format("ID(%d)", id);

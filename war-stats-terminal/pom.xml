@@ -12,4 +12,12 @@
 
     <artifactId>war-stats-terminal</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>nu.ygge.baseball.warstats</groupId>
+            <artifactId>war-stats-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 </project>
