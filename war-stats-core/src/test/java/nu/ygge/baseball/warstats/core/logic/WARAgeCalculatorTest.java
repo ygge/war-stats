@@ -7,13 +7,13 @@ import org.junit.Test;
 
 import java.util.Collection;
 
-public class WARYearCalculatorTest {
+public class WARAgeCalculatorTest {
 
-    private static WARYearCalculator calculator;
+    private static WARAgeCalculator calculator;
 
     @BeforeClass
     public static void setupClass() {
-        calculator = new WARYearCalculator(DataParserTestHelp.loadTestData());
+        calculator = new WARAgeCalculator(DataParserTestHelp.loadTestData());
     }
 
     @Test

@@ -1,7 +1,5 @@
 package nu.ygge.baseball.warstats.core.logic;
 
-import nu.ygge.baseball.warstats.core.logic.PlayerYearFinder;
-import nu.ygge.baseball.warstats.core.logic.WARYearCalculator;
 import nu.ygge.baseball.warstats.core.model.PlayerYearDataCollection;
 import nu.ygge.baseball.warstats.core.parser.DataParser;
 
@@ -13,12 +11,24 @@ public final class LogicFactory {
     }
 
     public static PlayerYearFinder createFinderWithStats(InputStream... streams) {
-        PlayerYearDataCollection playerYearDataCollection = DataParser.parse(streams);
+        PlayerYearDataCollection playerYearDataCollection = parseStreams(streams);
         return new PlayerYearFinder(playerYearDataCollection);
     }
 
-    public static WARYearCalculator createCalculatorWithStats(InputStream... streams) {
-        PlayerYearDataCollection playerYearDataCollection = DataParser.parse(streams);
-        return new WARYearCalculator(playerYearDataCollection);
+    public static WARAgeCalculator createCalculatorWithStats(InputStream... streams) {
+        PlayerYearDataCollection playerYearDataCollection = parseStreams(streams);
+        return new WARAgeCalculator(playerYearDataCollection);
+    }
+
+    public static PlayerYearDataCollection parseStreams(InputStream... streams) {
+        return DataParser.parse(streams);
+    }
+
+    public static PlayerYearFinder createFinderFromPlayerYearData(PlayerYearDataCollection playerYearDataCollection) {
+        return new PlayerYearFinder(playerYearDataCollection);
+    }
+
+    public static WARAgeCalculator createCalculatorFromPlayerYearData(PlayerYearDataCollection playerYearDataCollection) {
+        return new WARAgeCalculator(playerYearDataCollection);
     }
 }

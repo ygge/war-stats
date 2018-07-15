@@ -28,6 +28,6 @@ final class PercentWARAgeTypeCalculator extends WARAgeTypeCalculator {
     }
 
     private WARAge getWarAge(BigDecimal totalPercent, WARAge warAge) {
-        return new WARAge(warAge.age, WAR.ZERO, warAge.percentage.divide(totalPercent, 10, RoundingMode.HALF_UP));
+        return new WARAge(warAge.age, WAR.ZERO, warAge.percentage.multiply(new BigDecimal(100)).divide(totalPercent, 10, RoundingMode.HALF_UP));
     }
 }

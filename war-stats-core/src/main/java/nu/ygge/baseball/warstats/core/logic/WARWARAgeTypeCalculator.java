@@ -29,6 +29,6 @@ final class WARWARAgeTypeCalculator extends WARAgeTypeCalculator {
     }
 
     private WARAge warPerAge(WARAge warAge, BigDecimal totalWarDecimal) {
-        return new WARAge(warAge.age, warAge.war, new BigDecimal(warAge.war.intValue()).divide(totalWarDecimal, 10, RoundingMode.HALF_UP));
+        return new WARAge(warAge.age, warAge.war, new BigDecimal(warAge.war.intValue()).multiply(new BigDecimal(100)).divide(totalWarDecimal, 10, RoundingMode.HALF_UP));
     }
 }

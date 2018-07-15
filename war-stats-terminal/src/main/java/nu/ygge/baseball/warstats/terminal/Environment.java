@@ -1,6 +1,8 @@
 package nu.ygge.baseball.warstats.terminal;
 
 import nu.ygge.baseball.warstats.core.logic.PlayerYearFinder;
+import nu.ygge.baseball.warstats.core.logic.WARAgeCalculator;
+import nu.ygge.baseball.warstats.terminal.command.AgeWARCommand;
 import nu.ygge.baseball.warstats.terminal.command.Command;
 import nu.ygge.baseball.warstats.terminal.command.FindPlayerCommand;
 import nu.ygge.baseball.warstats.terminal.command.HelpCommand;
@@ -23,26 +25,36 @@ public final class Environment {
             new VerboseCommand(),
             new FindPlayerCommand(),
             new LoadDefaultStatsCommand(),
-            new ShowPlayerStatsCommand()
+            new ShowPlayerStatsCommand(),
+            new AgeWARCommand()
     );
 
     private PlayerYearFinder finder;
+    private WARAgeCalculator calculator;
     private boolean printErrors = false;
 
     public PlayerYearFinder getFinder() {
         return finder;
     }
 
-    public boolean isPrintErrors() {
-        return printErrors;
-    }
-
     public void setFinder(PlayerYearFinder finder) {
         this.finder = finder;
     }
 
+    public boolean isPrintErrors() {
+        return printErrors;
+    }
+
     public void setPrintErrors(boolean printErrors) {
         this.printErrors = printErrors;
+    }
+
+    public WARAgeCalculator getCalculator() {
+        return calculator;
+    }
+
+    public void setCalculator(WARAgeCalculator calculator) {
+        this.calculator = calculator;
     }
 
     public Optional<Command> getCommand(String commandString) {

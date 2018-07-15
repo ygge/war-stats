@@ -39,8 +39,8 @@ public abstract class Command {
 
     private void appendAlignedStringWithLength(StringBuilder sb, String str, int length, Alignment alignment) {
         String formatted = str;
-        if (str.length() > length) {
-            formatted = str.substring(0, length);
+        if (str.length() >= length) {
+            formatted = alignment.perform.apply(str.substring(0, length-1), SPACES.substring(0, 1));
         } else if (str.length() < length) {
             formatted = alignment.perform.apply(str, SPACES.substring(0, length-str.length()));
         }

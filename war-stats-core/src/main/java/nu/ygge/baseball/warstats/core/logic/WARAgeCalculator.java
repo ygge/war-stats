@@ -9,11 +9,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public final class WARYearCalculator {
+public final class WARAgeCalculator {
 
     private final PlayerYearDataCollection playerYearDataCollection;
 
-    WARYearCalculator(PlayerYearDataCollection playerYearDataCollection) {
+    WARAgeCalculator(PlayerYearDataCollection playerYearDataCollection) {
         this.playerYearDataCollection = playerYearDataCollection;
     }
 
