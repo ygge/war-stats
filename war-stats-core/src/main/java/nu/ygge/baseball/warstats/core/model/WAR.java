@@ -4,6 +4,8 @@ import nu.ygge.baseball.warstats.core.util.Util;
 
 public final class WAR {
 
+    public static final WAR ZERO = new WAR(0);
+
     private static final String NULL = "NULL";
 
     private final Integer war100;

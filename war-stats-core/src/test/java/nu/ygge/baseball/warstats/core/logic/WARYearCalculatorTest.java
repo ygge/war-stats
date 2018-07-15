@@ -1,5 +1,6 @@
 package nu.ygge.baseball.warstats.core.logic;
 
+import nu.ygge.baseball.warstats.core.model.WARAge;
 import nu.ygge.baseball.warstats.core.testhelp.DataParserTestHelp;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -16,11 +17,20 @@ public class WARYearCalculatorTest {
     }
 
     @Test
-    public void givenStandardTestDataAndStandardSettingsThenCheckCalculatedData() {
+    public void givenStandardTestDataAndStandardSettingsThenCheckCalculatedWARData() {
         CalculatorSettings settings = CalculatorSettings.Builder.createBuilderWithDefaultValues()
                 .build();
-        Collection<PlayerWARData> playerWARData = calculator.calculate(settings);
+        Collection<WARAge> warAges = calculator.calculateWARPerAge(settings);
 
-        System.out.println(playerWARData.size());
+        System.out.println(warAges);
+    }
+
+    @Test
+    public void givenStandardTestDataAndStandardSettingsThenCheckCalculatedPercentageData() {
+        CalculatorSettings settings = CalculatorSettings.Builder.createBuilderWithDefaultValues()
+                .build();
+        Collection<WARAge> warAges = calculator.calculateWARPercentagePerAge(settings);
+
+        System.out.println(warAges);
     }
 }

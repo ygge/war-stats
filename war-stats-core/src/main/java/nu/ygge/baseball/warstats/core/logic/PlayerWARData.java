@@ -2,6 +2,7 @@ package nu.ygge.baseball.warstats.core.logic;
 
 import nu.ygge.baseball.warstats.core.model.PlayerId;
 import nu.ygge.baseball.warstats.core.model.PlayerYearData;
+import nu.ygge.baseball.warstats.core.model.WARAge;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -13,21 +14,26 @@ final class PlayerWARData {
 
     final PlayerId playerId;
     final List<PlayerYearData> playerData;
-    final Map<Integer, BigDecimal> percentWarByYear;
+    final Map<Integer, WARAge> warByAge;
 
     PlayerWARData(PlayerId playerId, List<PlayerYearData> playerData) {
         this.playerId = playerId;
         this.playerData = playerData;
-        percentWarByYear = calculatePercentWarByYear(playerData);
+        warByAge = calculatePercentWarByAge(playerData);
     }
 
-    private static Map<Integer, BigDecimal> calculatePercentWarByYear(List<PlayerYearData> playerData) {
-        Map<Integer, BigDecimal> map = new HashMap<>();
+    private static Map<Integer, WARAge> calculatePercentWarByAge(List<PlayerYearData> playerData) {
+        Map<Integer, WARAge> map = new HashMap<>();
         BigDecimal totalWAR = playerData.stream()
                 .map(PlayerWARData::toBigDecimal)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
-        playerData.forEach(yearData -> map.put(yearData.year, calcPercent(totalWAR, yearData)));
+        playerData.forEach(yearData -> map.put(yearData.age, createWARAge(yearData, totalWAR)));
         return map;
+    }
+
+    private static WARAge createWARAge(PlayerYearData yearData, BigDecimal totalWAR) {
+        BigDecimal percent = calcPercent(totalWAR, yearData);
+        return new WARAge(yearData.age, yearData.war, percent);
     }
 
     private static BigDecimal calcPercent(BigDecimal totalWAR, PlayerYearData yearData) {
