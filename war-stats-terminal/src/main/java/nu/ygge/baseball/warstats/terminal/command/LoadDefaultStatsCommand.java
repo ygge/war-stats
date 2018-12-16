@@ -25,6 +25,6 @@ public class LoadDefaultStatsCommand extends Command {
 
     @Override
     protected String helpString() {
-        return "Loads default stats, updated to 2018-07-12";
+        return "Loads default stats, updated to 2018-12-15";
     }
 }

@@ -25,6 +25,6 @@ public class VerboseCommand extends Command {
 
     @Override
     protected String helpString() {
-        return "Enable or disable printing errors, default id disabled";
+        return "Enable or disable printing errors, default is disabled";
     }
 }
