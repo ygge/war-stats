@@ -16,32 +16,32 @@ public abstract class Command {
 
     protected abstract String helpString();
 
-    protected void print(String message) {
+    void print(String message) {
         Printer.print(message);
     }
 
-    protected void println(String message) {
+    void println(String message) {
         Printer.println(message);
     }
 
-    protected void appendLeftAlignedStringWithLength(StringBuilder sb, String str, int length) {
+    void appendLeftAlignedStringWithLength(StringBuilder sb, String str, int length) {
         appendAlignedStringWithLength(sb, str, length, Alignment.LEFT);
     }
 
-    protected void appendRightAlignedStringWithLength(StringBuilder sb, String str, int length) {
+    void appendRightAlignedStringWithLength(StringBuilder sb, String str, int length) {
         appendAlignedStringWithLength(sb, str, length, Alignment.RIGHT);
     }
 
-    protected void appendRightAlignedIntegerWithLength(StringBuilder sb, Integer value, int length) {
+    void appendRightAlignedIntegerWithLength(StringBuilder sb, Integer value, int length) {
         String str = Integer.toString(value == null ? 0 : value);
         appendAlignedStringWithLength(sb, str, length, Alignment.RIGHT);
     }
 
     private void appendAlignedStringWithLength(StringBuilder sb, String str, int length, Alignment alignment) {
-        String formatted = str;
+        String formatted;
         if (str.length() >= length) {
             formatted = alignment.perform.apply(str.substring(0, length-1), SPACES.substring(0, 1));
-        } else if (str.length() < length) {
+        } else {
             formatted = alignment.perform.apply(str, SPACES.substring(0, length-str.length()));
         }
         sb.append(formatted);
@@ -54,7 +54,7 @@ public abstract class Command {
         private final BiFunction<String, String, String> perform;
 
         Alignment(BiFunction<String, String, String> perform) {
-            this.perform = perform;;
+            this.perform = perform;
         }
     }
 }

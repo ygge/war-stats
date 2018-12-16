@@ -7,6 +7,7 @@ import nu.ygge.baseball.warstats.terminal.command.Command;
 import nu.ygge.baseball.warstats.terminal.command.FindPlayerCommand;
 import nu.ygge.baseball.warstats.terminal.command.HelpCommand;
 import nu.ygge.baseball.warstats.terminal.command.LoadDefaultStatsCommand;
+import nu.ygge.baseball.warstats.terminal.command.PercentWARCommand;
 import nu.ygge.baseball.warstats.terminal.command.QuitCommand;
 import nu.ygge.baseball.warstats.terminal.command.ShowPlayerStatsCommand;
 import nu.ygge.baseball.warstats.terminal.command.VerboseCommand;
@@ -26,7 +27,8 @@ public final class Environment {
             new FindPlayerCommand(),
             new LoadDefaultStatsCommand(),
             new ShowPlayerStatsCommand(),
-            new AgeWARCommand()
+            new AgeWARCommand(),
+            new PercentWARCommand()
     );
 
     private PlayerYearFinder finder;
@@ -57,7 +59,7 @@ public final class Environment {
         this.calculator = calculator;
     }
 
-    public Optional<Command> getCommand(String commandString) {
+    Optional<Command> getCommand(String commandString) {
         for (Command command : COMMANDS) {
             if (commandString.equalsIgnoreCase(command.command())) {
                 return Optional.of(command);
