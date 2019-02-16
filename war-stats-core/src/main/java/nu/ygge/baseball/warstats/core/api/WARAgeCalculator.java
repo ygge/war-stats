@@ -40,6 +40,7 @@ public final class WARAgeCalculator {
                                                        TopListSettings topListSettings) {
         List<PlayerYearData> matchingYearDatas = filterMatchingYearDatas(calculatorSettings);
         Map<Player, PlayerTotalWAR> warByPlayer = matchingYearDatas.stream()
+                .filter(playerYear -> topListSettings.ageInterval.matches(playerYear.age))
                 .collect(Collectors.groupingBy(data -> data.player, new PlayerTotalWARCollector()));
         List<PlayerTotalWAR> playerTotalWar = new ArrayList<>(warByPlayer.values());
         playerTotalWar.sort(Comparator.comparing(war -> war.totalWAR));

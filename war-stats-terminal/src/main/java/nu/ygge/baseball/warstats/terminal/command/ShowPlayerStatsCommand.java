@@ -37,7 +37,7 @@ public class ShowPlayerStatsCommand extends Command {
             println(String.format("Player with id '%s' not found", playerId.toSimpleString()));
         } else {
             StringBuilder message = new StringBuilder();
-            message.append(String.format("Year data for '%s'", playerYears.iterator().next().name)).append(Printer.NEW_LINE);
+            message.append(String.format("Year data for '%s'", playerYears.iterator().next().player.name)).append(Printer.NEW_LINE);
             appendLeftAlignedStringWithLength(message, "Year", 5);
             appendRightAlignedStringWithLength(message, "WAR", 6);
             appendRightAlignedStringWithLength(message, "G", 6);

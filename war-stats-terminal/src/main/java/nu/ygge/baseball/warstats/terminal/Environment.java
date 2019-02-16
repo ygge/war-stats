@@ -10,6 +10,7 @@ import nu.ygge.baseball.warstats.terminal.command.LoadDefaultStatsCommand;
 import nu.ygge.baseball.warstats.terminal.command.PercentWARCommand;
 import nu.ygge.baseball.warstats.terminal.command.QuitCommand;
 import nu.ygge.baseball.warstats.terminal.command.ShowPlayerStatsCommand;
+import nu.ygge.baseball.warstats.terminal.command.TopListCommand;
 import nu.ygge.baseball.warstats.terminal.command.VerboseCommand;
 
 import java.util.Arrays;
@@ -21,14 +22,16 @@ import java.util.Optional;
 public final class Environment {
 
     private static final List<Command> COMMANDS = Arrays.asList(
-            new QuitCommand(),
             new HelpCommand(),
+            new QuitCommand(),
             new VerboseCommand(),
+
+            new AgeWARCommand(),
             new FindPlayerCommand(),
             new LoadDefaultStatsCommand(),
+            new PercentWARCommand(),
             new ShowPlayerStatsCommand(),
-            new AgeWARCommand(),
-            new PercentWARCommand()
+            new TopListCommand()
     );
 
     private PlayerYearFinder finder;

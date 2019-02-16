@@ -4,23 +4,27 @@ import nu.ygge.baseball.warstats.core.api.model.Interval;
 
 public final class TopListSettings {
 
-    final Interval positionSelection;
+    final Interval positionSelection, ageInterval;
 
-    private TopListSettings(Interval positionSelection) {
+    private TopListSettings(Interval positionSelection, Interval ageInterval) {
         this.positionSelection = positionSelection;
+        this.ageInterval = ageInterval;
     }
 
+    @SuppressWarnings({"UnusedReturnValue", "unused"})
     public static class Builder {
 
-        private Interval positionSelection;
+        private Interval positionSelection, ageInterval;
 
-        private Builder(Interval positionSelection) {
+        private Builder(Interval positionSelection, Interval ageInterval) {
             this.positionSelection = positionSelection;
+            this.ageInterval = ageInterval;
         }
 
         public static TopListSettings.Builder createBuilderWithDefaultValues() {
             return new TopListSettings.Builder(
-                    Interval.createWithMax(20)
+                    Interval.createWithMax(20),
+                    Interval.createWithNoLimits()
             );
         }
 
@@ -30,8 +34,14 @@ public final class TopListSettings {
             return this;
         }
 
+        public TopListSettings.Builder setAgeInterval(Interval ageInterval) {
+            verifyNotNull(ageInterval);
+            this.ageInterval = ageInterval;
+            return this;
+        }
+
         public TopListSettings build() {
-            return new TopListSettings(positionSelection);
+            return new TopListSettings(positionSelection, ageInterval);
         }
 
         private void verifyNotNull(Interval interval) {
