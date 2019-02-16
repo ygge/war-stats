@@ -1,6 +1,6 @@
 package nu.ygge.baseball.warstats.core.testhelp;
 
-import nu.ygge.baseball.warstats.core.model.PlayerId;
+import nu.ygge.baseball.warstats.core.api.model.PlayerId;
 
 public class PlayerIdTestHelp {
 

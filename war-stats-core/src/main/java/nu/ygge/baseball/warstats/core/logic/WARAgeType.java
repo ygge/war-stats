@@ -2,7 +2,7 @@ package nu.ygge.baseball.warstats.core.logic;
 
 import java.util.function.Supplier;
 
-enum WARAgeType {
+public enum WARAgeType {
     WAR(WARWARAgeTypeCalculator::new),
     PERCENT(PercentWARAgeTypeCalculator::new);
 
@@ -12,7 +12,7 @@ enum WARAgeType {
         this.calculatorSupplier = calculatorSupplier;
     }
 
-    WARAgeTypeCalculator createCalculator() {
+    public WARAgeTypeCalculator createCalculator() {
         return calculatorSupplier.get();
     }
 }

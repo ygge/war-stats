@@ -1,4 +1,4 @@
-package nu.ygge.baseball.warstats.core.model;
+package nu.ygge.baseball.warstats.core.api.model;
 
 import java.math.BigDecimal;
 

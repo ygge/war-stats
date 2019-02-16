@@ -1,8 +1,8 @@
 package nu.ygge.baseball.warstats.core.logic;
 
-import nu.ygge.baseball.warstats.core.model.PlayerId;
-import nu.ygge.baseball.warstats.core.model.PlayerYearData;
-import nu.ygge.baseball.warstats.core.model.WARAge;
+import nu.ygge.baseball.warstats.core.api.model.PlayerId;
+import nu.ygge.baseball.warstats.core.api.model.PlayerYearData;
+import nu.ygge.baseball.warstats.core.api.model.WARAge;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -10,13 +10,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-final class PlayerWARData {
+public final class PlayerWARData {
 
-    final PlayerId playerId;
-    final List<PlayerYearData> playerData;
-    final Map<Integer, WARAge> warByAge;
+    public final PlayerId playerId;
+    public final List<PlayerYearData> playerData;
+    public final Map<Integer, WARAge> warByAge;
 
-    PlayerWARData(PlayerId playerId, List<PlayerYearData> playerData) {
+    public PlayerWARData(PlayerId playerId, List<PlayerYearData> playerData) {
         this.playerId = playerId;
         this.playerData = playerData;
         warByAge = calculatePercentWarByAge(playerData);

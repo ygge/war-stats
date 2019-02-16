@@ -1,6 +1,6 @@
-package nu.ygge.baseball.warstats.core.logic;
+package nu.ygge.baseball.warstats.core.api;
 
-import nu.ygge.baseball.warstats.core.model.Player;
+import nu.ygge.baseball.warstats.core.api.model.Player;
 import nu.ygge.baseball.warstats.core.testhelp.DataParserTestHelp;
 import nu.ygge.baseball.warstats.core.testhelp.PlayerIdTestHelp;
 import org.junit.BeforeClass;

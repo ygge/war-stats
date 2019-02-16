@@ -1,8 +1,12 @@
-package nu.ygge.baseball.warstats.core.logic;
+package nu.ygge.baseball.warstats.core.api;
 
-import nu.ygge.baseball.warstats.core.model.PlayerYearData;
-import nu.ygge.baseball.warstats.core.model.PlayerYearDataCollection;
-import nu.ygge.baseball.warstats.core.model.WARAge;
+import nu.ygge.baseball.warstats.core.logic.PlayerWARData;
+import nu.ygge.baseball.warstats.core.logic.PlayerWARHelper;
+import nu.ygge.baseball.warstats.core.logic.WARAgeType;
+import nu.ygge.baseball.warstats.core.logic.WARAgeTypeCalculator;
+import nu.ygge.baseball.warstats.core.api.model.PlayerYearData;
+import nu.ygge.baseball.warstats.core.api.model.PlayerYearDataCollection;
+import nu.ygge.baseball.warstats.core.api.model.WARAge;
 
 import java.util.Collection;
 import java.util.Comparator;

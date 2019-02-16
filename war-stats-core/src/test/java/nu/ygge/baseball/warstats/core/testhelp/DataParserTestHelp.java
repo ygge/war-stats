@@ -1,6 +1,6 @@
 package nu.ygge.baseball.warstats.core.testhelp;
 
-import nu.ygge.baseball.warstats.core.model.PlayerYearDataCollection;
+import nu.ygge.baseball.warstats.core.api.model.PlayerYearDataCollection;
 import nu.ygge.baseball.warstats.core.parser.DataParser;
 
 import java.io.InputStream;

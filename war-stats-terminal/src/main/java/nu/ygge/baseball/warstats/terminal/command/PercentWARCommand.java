@@ -1,7 +1,7 @@
 package nu.ygge.baseball.warstats.terminal.command;
 
-import nu.ygge.baseball.warstats.core.logic.CalculatorSettings;
-import nu.ygge.baseball.warstats.core.model.WARAge;
+import nu.ygge.baseball.warstats.core.api.CalculatorSettings;
+import nu.ygge.baseball.warstats.core.api.model.WARAge;
 import nu.ygge.baseball.warstats.terminal.Environment;
 import nu.ygge.baseball.warstats.terminal.util.Printer;
 

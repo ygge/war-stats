@@ -1,4 +1,4 @@
-package nu.ygge.baseball.warstats.core.logic;
+package nu.ygge.baseball.warstats.core.api;
 
 import nu.ygge.baseball.warstats.core.util.Interval;
 

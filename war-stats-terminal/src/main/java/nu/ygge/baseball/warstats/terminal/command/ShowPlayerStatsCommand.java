@@ -1,7 +1,7 @@
 package nu.ygge.baseball.warstats.terminal.command;
 
-import nu.ygge.baseball.warstats.core.model.PlayerId;
-import nu.ygge.baseball.warstats.core.model.PlayerYearData;
+import nu.ygge.baseball.warstats.core.api.model.PlayerId;
+import nu.ygge.baseball.warstats.core.api.model.PlayerYearData;
 import nu.ygge.baseball.warstats.terminal.Environment;
 import nu.ygge.baseball.warstats.terminal.util.Printer;
 

@@ -1,8 +1,8 @@
 package nu.ygge.baseball.warstats.core.parser;
 
-import nu.ygge.baseball.warstats.core.model.PlayerId;
-import nu.ygge.baseball.warstats.core.model.PlayerYearData;
-import nu.ygge.baseball.warstats.core.model.PlayerYearDataCollection;
+import nu.ygge.baseball.warstats.core.api.model.PlayerId;
+import nu.ygge.baseball.warstats.core.api.model.PlayerYearData;
+import nu.ygge.baseball.warstats.core.api.model.PlayerYearDataCollection;
 import nu.ygge.baseball.warstats.core.util.Util;
 
 import java.io.BufferedReader;

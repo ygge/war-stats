@@ -1,6 +1,6 @@
 package nu.ygge.baseball.warstats.terminal.command;
 
-import nu.ygge.baseball.warstats.core.model.Player;
+import nu.ygge.baseball.warstats.core.api.model.Player;
 import nu.ygge.baseball.warstats.terminal.Environment;
 import nu.ygge.baseball.warstats.terminal.util.Printer;
 

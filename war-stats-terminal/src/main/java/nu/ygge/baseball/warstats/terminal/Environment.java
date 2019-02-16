@@ -1,7 +1,7 @@
 package nu.ygge.baseball.warstats.terminal;
 
-import nu.ygge.baseball.warstats.core.logic.PlayerYearFinder;
-import nu.ygge.baseball.warstats.core.logic.WARAgeCalculator;
+import nu.ygge.baseball.warstats.core.api.PlayerYearFinder;
+import nu.ygge.baseball.warstats.core.api.WARAgeCalculator;
 import nu.ygge.baseball.warstats.terminal.command.AgeWARCommand;
 import nu.ygge.baseball.warstats.terminal.command.Command;
 import nu.ygge.baseball.warstats.terminal.command.FindPlayerCommand;

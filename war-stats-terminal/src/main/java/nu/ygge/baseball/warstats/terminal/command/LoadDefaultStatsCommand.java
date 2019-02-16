@@ -1,7 +1,7 @@
 package nu.ygge.baseball.warstats.terminal.command;
 
-import nu.ygge.baseball.warstats.core.logic.LogicFactory;
-import nu.ygge.baseball.warstats.core.model.PlayerYearDataCollection;
+import nu.ygge.baseball.warstats.core.api.LogicFactory;
+import nu.ygge.baseball.warstats.core.api.model.PlayerYearDataCollection;
 import nu.ygge.baseball.warstats.terminal.Environment;
 
 import java.util.List;

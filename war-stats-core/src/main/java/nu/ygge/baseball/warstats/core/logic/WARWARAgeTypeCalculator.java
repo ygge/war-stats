@@ -1,7 +1,7 @@
 package nu.ygge.baseball.warstats.core.logic;
 
-import nu.ygge.baseball.warstats.core.model.WAR;
-import nu.ygge.baseball.warstats.core.model.WARAge;
+import nu.ygge.baseball.warstats.core.api.model.WAR;
+import nu.ygge.baseball.warstats.core.api.model.WARAge;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -9,15 +9,15 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-final class WARWARAgeTypeCalculator extends WARAgeTypeCalculator {
+public final class WARWARAgeTypeCalculator extends WARAgeTypeCalculator {
 
     @Override
-    WARAge add(WARAge age1, WARAge age2) {
+    public WARAge add(WARAge age1, WARAge age2) {
         return new WARAge(age1.age, age1.war.add(age2.war), BigDecimal.ZERO);
     }
 
     @Override
-    List<WARAge> getTotal() {
+    public List<WARAge> getTotal() {
         Collection<WARAge> warAgeCollection = getWarAges();
         WAR totalWar = warAgeCollection.stream()
                 .map(warAge -> warAge.war)
