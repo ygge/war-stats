@@ -24,7 +24,7 @@ public final class PlayerYearFinder {
     public Collection<Player> searchPlayerByName(String name) {
         Map<PlayerId, String> playerNamesById = new HashMap<>();
         for (PlayerYearData playerYearData : playerYearsData) {
-            playerNamesById.put(playerYearData.id, playerYearData.name);
+            playerNamesById.put(playerYearData.player.id, playerYearData.player.name);
         }
         String nameToSearch = name.toLowerCase();
         return playerNamesById.entrySet().stream()
@@ -35,7 +35,7 @@ public final class PlayerYearFinder {
 
     public Collection<PlayerYearData> getYearDataForPlayer(PlayerId playerId) {
         return playerYearsData.stream()
-                .filter(playerYear -> playerId.equals(playerYear.id))
+                .filter(playerYear -> playerId.equals(playerYear.player.id))
                 .sorted(Comparator.comparingInt(o -> o.year))
                 .collect(Collectors.toList());
     }

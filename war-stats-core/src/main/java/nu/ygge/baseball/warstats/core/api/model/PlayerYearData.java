@@ -4,9 +4,9 @@ import nu.ygge.baseball.warstats.core.util.Util;
 
 public final class PlayerYearData {
 
-    public final PlayerId id;
+    public final Player player;
     public final int year, age, games;
-    public final String name, team;
+    public final String team;
     public final WAR war;
     public final Integer plateAppearances, inningsPitched;
 
@@ -17,10 +17,14 @@ public final class PlayerYearData {
 
     private PlayerYearData(PlayerId id, String name, String team, int year, int age, int games, Integer plateAppearances,
                           Integer inningsPitched, WAR war) {
-        this.id = id;
+        this(new Player(id, name), team, year, age, games, plateAppearances, inningsPitched, war);
+    }
+
+    private PlayerYearData(Player player, String team, int year, int age, int games, Integer plateAppearances,
+                           Integer inningsPitched, WAR war) {
+        this.player = player;
         this.year = year;
         this.age = age;
-        this.name = name;
         this.team = team;
         this.games = games;
         this.plateAppearances = plateAppearances;
@@ -29,13 +33,12 @@ public final class PlayerYearData {
     }
 
     PlayerYear getPlayerYear() {
-        return new PlayerYear(id, year);
+        return new PlayerYear(player.id, year);
     }
 
     public PlayerYearData add(PlayerYearData playerYearData) {
         return new PlayerYearData(
-                id,
-                name,
+                player,
                 team,
                 year,
                 age,
@@ -49,11 +52,11 @@ public final class PlayerYearData {
     @Override
     public String toString() {
         return "PlayerYearData{" +
-                "id=" + id +
+                "id=" + player.id +
+                ", name='" + player.name + '\'' +
                 ", year=" + year +
                 ", age=" + age +
                 ", games=" + games +
-                ", name='" + name + '\'' +
                 ", team='" + team + '\'' +
                 ", war=" + war +
                 '}';

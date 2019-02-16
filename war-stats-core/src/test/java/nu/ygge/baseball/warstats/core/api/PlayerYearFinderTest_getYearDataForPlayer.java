@@ -41,7 +41,7 @@ public class PlayerYearFinderTest_getYearDataForPlayer {
 
         Set<Integer> yearsSeen = new HashSet<>();
         for (PlayerYearData playerYear : playerYearsData) {
-            assertEquals(playerId, playerYear.id);
+            assertEquals(playerId, playerYear.player.id);
             yearsSeen.add(playerYear.year);
         }
         assertEquals(expectedNumberOfYears, yearsSeen.size());

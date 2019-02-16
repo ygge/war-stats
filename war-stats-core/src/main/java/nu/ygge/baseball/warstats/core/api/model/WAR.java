@@ -2,7 +2,7 @@ package nu.ygge.baseball.warstats.core.api.model;
 
 import nu.ygge.baseball.warstats.core.util.Util;
 
-public final class WAR {
+public final class WAR implements Comparable<WAR> {
 
     public static final WAR ZERO = new WAR(0);
 
@@ -62,5 +62,10 @@ public final class WAR {
     @Override
     public String toString() {
         return String.format("WAR(%s)", toSimpleString());
+    }
+
+    @Override
+    public int compareTo(WAR other) {
+        return other.war100-war100;
     }
 }

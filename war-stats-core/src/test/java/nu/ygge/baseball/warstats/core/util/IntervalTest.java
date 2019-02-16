@@ -1,5 +1,6 @@
 package nu.ygge.baseball.warstats.core.util;
 
+import nu.ygge.baseball.warstats.core.api.model.Interval;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

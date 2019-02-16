@@ -1,5 +1,6 @@
 package nu.ygge.baseball.warstats.core.api;
 
+import nu.ygge.baseball.warstats.core.api.model.PlayerTotalWAR;
 import nu.ygge.baseball.warstats.core.api.model.WARAge;
 import nu.ygge.baseball.warstats.core.testhelp.DataParserTestHelp;
 import org.junit.BeforeClass;
@@ -32,5 +33,16 @@ public class WARAgeCalculatorTest {
         Collection<WARAge> warAges = calculator.calculateWARPercentagePerAge(settings);
 
         System.out.println(warAges);
+    }
+
+    @Test
+    public void givenStandardTestDataAndStandardSettingsThenCheckTopList() {
+        CalculatorSettings calculatorSettings = CalculatorSettings.Builder.createBuilderWithDefaultValues()
+                .build();
+        TopListSettings topListSettings = TopListSettings.Builder.createBuilderWithDefaultValues()
+                .build();
+        Collection<PlayerTotalWAR> totalWARs = calculator.calculateTopList(calculatorSettings, topListSettings);
+
+        System.out.println(totalWARs);
     }
 }

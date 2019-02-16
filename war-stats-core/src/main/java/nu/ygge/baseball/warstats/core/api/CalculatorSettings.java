@@ -1,27 +1,15 @@
 package nu.ygge.baseball.warstats.core.api;
 
-import nu.ygge.baseball.warstats.core.util.Interval;
+import nu.ygge.baseball.warstats.core.api.model.Interval;
 
 public final class CalculatorSettings {
 
-    private final Interval year, plateAppearances, inningsPitched;
+    final Interval year, plateAppearances, inningsPitched;
 
     private CalculatorSettings(Interval year, Interval plateAppearances, Interval inningsPitched) {
         this.year = year;
         this.plateAppearances = plateAppearances;
         this.inningsPitched = inningsPitched;
-    }
-
-    Interval getYear() {
-        return year;
-    }
-
-    Interval getPlateAppearances() {
-        return plateAppearances;
-    }
-
-    Interval getInningsPitched() {
-        return inningsPitched;
     }
 
     public static class Builder {

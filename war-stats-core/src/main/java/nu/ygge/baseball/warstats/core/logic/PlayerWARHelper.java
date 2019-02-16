@@ -25,10 +25,10 @@ public final class PlayerWARHelper {
     private static Map<PlayerId, List<PlayerYearData>> groupByPlayer(List<PlayerYearData> yearData) {
         Map<PlayerId, List<PlayerYearData>> map = new HashMap<>();
         for (PlayerYearData data : yearData) {
-            if (!map.containsKey(data.id)) {
-                map.put(data.id, new ArrayList<>());
+            if (!map.containsKey(data.player.id)) {
+                map.put(data.player.id, new ArrayList<>());
             }
-            map.get(data.id).add(data);
+            map.get(data.player.id).add(data);
         }
         return map;
     }
