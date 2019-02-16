@@ -7,7 +7,7 @@ public final class PlayerYear {
     public final PlayerId id;
     public final int year;
 
-    public PlayerYear(PlayerId id, int year) {
+    PlayerYear(PlayerId id, int year) {
         this.id = id;
         this.year = year;
     }

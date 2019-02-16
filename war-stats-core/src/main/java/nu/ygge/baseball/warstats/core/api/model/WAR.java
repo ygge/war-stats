@@ -14,7 +14,7 @@ public final class WAR {
         this.war100 = war;
     }
 
-    public static WAR create(String warString) {
+    static WAR create(String warString) {
         return new WAR(parseWAR(warString));
     }
 
@@ -54,7 +54,7 @@ public final class WAR {
             wholeNumber = warString;
         } else {
             wholeNumber = warString.substring(0, index);
-            decimalNumber = warString.substring(index+1, warString.length());
+            decimalNumber = warString.substring(index+1);
         }
         return Util.parseInt(wholeNumber)*100 + Util.parseInt(decimalNumber);
     }

@@ -24,7 +24,7 @@ public abstract class WARAgeTypeCalculator {
         }
     }
 
-    protected Collection<WARAge> getWarAges() {
+    Collection<WARAge> getWarAges() {
         return warPerAge.values();
     }
 }

@@ -10,25 +10,15 @@ public final class LogicFactory {
     private LogicFactory() {
     }
 
-    public static PlayerYearFinder createFinderWithStats(InputStream... streams) {
-        PlayerYearDataCollection playerYearDataCollection = parseStreams(streams);
-        return new PlayerYearFinder(playerYearDataCollection);
-    }
-
-    public static WARAgeCalculator createCalculatorWithStats(InputStream... streams) {
-        PlayerYearDataCollection playerYearDataCollection = parseStreams(streams);
-        return new WARAgeCalculator(playerYearDataCollection);
-    }
-
-    public static PlayerYearDataCollection parseStreams(InputStream... streams) {
-        return DataParser.parse(streams);
-    }
-
     public static PlayerYearFinder createFinderFromPlayerYearData(PlayerYearDataCollection playerYearDataCollection) {
         return new PlayerYearFinder(playerYearDataCollection);
     }
 
     public static WARAgeCalculator createCalculatorFromPlayerYearData(PlayerYearDataCollection playerYearDataCollection) {
         return new WARAgeCalculator(playerYearDataCollection);
+    }
+
+    public static PlayerYearDataCollection parseStreams(InputStream... streams) {
+        return DataParser.parse(streams);
     }
 }

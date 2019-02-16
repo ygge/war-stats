@@ -12,15 +12,15 @@ public final class CalculatorSettings {
         this.inningsPitched = inningsPitched;
     }
 
-    public Interval getYear() {
+    Interval getYear() {
         return year;
     }
 
-    public Interval getPlateAppearances() {
+    Interval getPlateAppearances() {
         return plateAppearances;
     }
 
-    public Interval getInningsPitched() {
+    Interval getInningsPitched() {
         return inningsPitched;
     }
 

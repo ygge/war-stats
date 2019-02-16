@@ -17,8 +17,8 @@ public final class PlayerWARHelper {
 
     public static Collection<PlayerWARData> toPlayerWARData(List<PlayerYearData> allPlayerData) {
         Map<PlayerId, List<PlayerYearData>> dataByPlayer = groupByPlayer(allPlayerData);
-        return dataByPlayer.entrySet().stream()
-                .map(entry -> new PlayerWARData(entry.getKey(), entry.getValue()))
+        return dataByPlayer.values().stream()
+                .map(PlayerWARData::new)
                 .collect(Collectors.toList());
     }
 

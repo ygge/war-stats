@@ -1,6 +1,5 @@
 package nu.ygge.baseball.warstats.core.util;
 
-@SuppressWarnings("unused")
 public final class Interval {
     private final Integer min, max;
 

@@ -15,7 +15,7 @@ public final class PlayerYearData {
         this(id, name, team, year, age, games, plateAppearances, inningsPitched, WAR.create(warString));
     }
 
-    public PlayerYearData(PlayerId id, String name, String team, int year, int age, int games, Integer plateAppearances,
+    private PlayerYearData(PlayerId id, String name, String team, int year, int age, int games, Integer plateAppearances,
                           Integer inningsPitched, WAR war) {
         this.id = id;
         this.year = year;
@@ -28,7 +28,7 @@ public final class PlayerYearData {
         this.war = war;
     }
 
-    public PlayerYear getPlayerYear() {
+    PlayerYear getPlayerYear() {
         return new PlayerYear(id, year);
     }
 
